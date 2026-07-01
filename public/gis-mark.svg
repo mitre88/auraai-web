@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  GisMark.svg — AuraAI brand mark. Source of truth for app icon, launch screen,
+  App Store and web surfaces.
+  Identity: "Tiza & Cuaderno" (chalk & notebook), risograph editorial.
+  ONE idea: a stick of chalk (Gis) — the teacher's tool, given a kawaii face.
+  Two inks only: ink-green (#1F2A24) face/outline + fluorescent riso coral
+  (#FF4D6D) worn tip + baseline rule, on a cream chalk body (#FCFAF4).
+  No gradient, no bevel/3D, no glow. Reads in pure monochrome at 32px.
+-->
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none"
+     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AuraAI — Gis the chalk">
+  <defs>
+    <clipPath id="gisBody">
+      <rect x="82" y="46" width="92" height="174" rx="44" ry="44"/>
+    </clipPath>
+  </defs>
+
+  <!-- Whole mark leans gently like a chalk set down on the desk -->
+  <g transform="rotate(-10 128 133)">
+    <!-- Chalk body: cream stick with ink-green outline -->
+    <rect x="82" y="46" width="92" height="174" rx="44" ry="44"
+          fill="#FCFAF4" stroke="#1F2A24" stroke-width="7"/>
+
+    <!-- Worn coral chalk tip (the single second ink), clipped to the body -->
+    <g clip-path="url(#gisBody)">
+      <rect x="78" y="188" width="100" height="40" fill="#FF4D6D"/>
+    </g>
+
+    <!-- Coral blush cheeks -->
+    <ellipse cx="100" cy="120" rx="7" ry="4.5" fill="#FF4D6D" fill-opacity="0.5"/>
+    <ellipse cx="156" cy="120" rx="7" ry="4.5" fill="#FF4D6D" fill-opacity="0.5"/>
+
+    <!-- Eyes (ink-green) with chalk catchlight -->
+    <g fill="#1F2A24">
+      <ellipse cx="110" cy="106" rx="6" ry="8"/>
+      <ellipse cx="146" cy="106" rx="6" ry="8"/>
+    </g>
+    <circle cx="112" cy="103" r="2" fill="#FCFAF4"/>
+    <circle cx="148" cy="103" r="2" fill="#FCFAF4"/>
+
+    <!-- Gentle smile -->
+    <path d="M120 120 Q128 128 136 120" stroke="#1F2A24" stroke-width="4.5"
+          stroke-linecap="round" fill="none"/>
+  </g>
+
+  <!-- Coral baseline rule — the notebook margin/baseline, grounding the chalk -->
+  <line x1="72" y1="240" x2="184" y2="240" stroke="#FF4D6D" stroke-width="7"
+        stroke-linecap="round"/>
+</svg>

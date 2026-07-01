@@ -1,0 +1,251 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ *  AuraAI — "Tiza & Cuaderno" (chalk & notebook) web design system.
+ *  Risograph editorial: ink-green on warm cream paper, fluorescent
+ *  coral as the single signature accent, chalkboard green for support.
+ *  Tokens mirror the iOS app (DesignSystem.swift) 1:1.
+ * ------------------------------------------------------------------ */
+
+/* next-themes toggles class="dark" on <html>. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Redaction — the app's bundled display face. Editorial, typewriter-adjacent,
+   used only for headlines the way the app uses it. Body stays SF Pro. */
+@font-face {
+  font-family: "Redaction";
+  src: url("/fonts/Redaction-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Ink-green — the dominant text / line ink */
+  --ink: #1f2a24;
+  --ink-soft: #4f5e55;
+  /* Fluorescent risograph coral — the one signature accent */
+  --coral: #ff4d6d;
+  --coral-soft: #ff8095;
+  --coral-wash: #ffe6eb;
+  /* Chalkboard / bottle green — the second accent (confirmations, support) */
+  --green: #2f6b4f;
+  --green-wash: #e2efe8;
+  /* Warm cream paper — background + raised surfaces (never pure white) */
+  --paper: #f5f0e6;
+  --paper-raised: #fbf8f0;
+  /* Notebook rule + chalkboard */
+  --rule: #d8cfbe;
+  --board: #24322b;
+  --chalk: #fcfaf4;
+  --hairline: rgba(31, 42, 36, 0.12);
+  --grid-line: rgba(31, 42, 36, 0.05);
+}
+
+.dark {
+  --ink: #e8ebe6;
+  --ink-soft: #9faea5;
+  --coral: #ff6680;
+  --coral-soft: #ff9aab;
+  --coral-wash: #3a2630;
+  --green: #5fbf8c;
+  --green-wash: #1e2c25;
+  --paper: #15191c;
+  --paper-raised: #1c2227;
+  --rule: #2e3833;
+  --board: #0f1512;
+  --chalk: #f0ede4;
+  --hairline: rgba(232, 235, 230, 0.12);
+  --grid-line: rgba(232, 235, 230, 0.05);
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-coral: var(--coral);
+  --color-coral-soft: var(--coral-soft);
+  --color-coral-wash: var(--coral-wash);
+  --color-green: var(--green);
+  --color-green-wash: var(--green-wash);
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-rule: var(--rule);
+  --color-board: var(--board);
+  --color-chalk: var(--chalk);
+  --color-hairline: var(--hairline);
+
+  --font-display: "Redaction", "Courier New", ui-serif, Georgia, serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI",
+    system-ui, sans-serif;
+  --font-mono: "SF Mono", ui-monospace, Menlo, monospace;
+}
+
+* {
+  border-color: var(--hairline);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Display headlines use Redaction with tight, editorial spacing. */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+  font-weight: 400;
+}
+
+/* Selection carries the coral chalk mark. */
+::selection {
+  background: var(--coral);
+  color: var(--chalk);
+}
+
+/* Visible, on-brand focus ring. */
+:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* Ruled notebook paper — drawn as a CSS background (the app's PaperBackground). */
+.notebook-lines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 33px,
+    var(--grid-line) 33px,
+    var(--grid-line) 34px
+  );
+}
+
+/* Riso grain — a faint speckle over paper, matching the app's grain. */
+.paper-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+}
+.dark .paper-grain::before {
+  mix-blend-mode: screen;
+  opacity: 0.35;
+}
+
+/* The coral notebook margin — a fixed left spine, like the app's NotebookPage. */
+.coral-margin {
+  position: relative;
+}
+.coral-margin::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: color-mix(in srgb, var(--coral) 55%, transparent);
+}
+
+/* Uppercase tracked field label — the teacher-stationery caption voice. */
+.field-label {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* Mono record number / stamp. */
+.stamp-mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+/* Editorial hairline rule under section headers. */
+.aura-rule {
+  height: 1.5px;
+  background: color-mix(in srgb, var(--coral) 60%, transparent);
+}
+
+/* Respect reduced motion globally. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Long-form legal / prose styling. */
+.prose-aura {
+  color: var(--ink);
+  line-height: 1.75;
+}
+.prose-aura h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+  margin-top: 2.75rem;
+  margin-bottom: 0.85rem;
+  color: var(--ink);
+}
+.prose-aura h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.1875rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+}
+.prose-aura p {
+  margin-bottom: 1.05rem;
+  color: var(--ink);
+}
+.prose-aura ul {
+  margin: 0.5rem 0 1.25rem;
+  padding-left: 0;
+  list-style: none;
+}
+.prose-aura li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.6rem;
+  color: var(--ink);
+}
+.prose-aura li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  background: var(--coral);
+  border-radius: 1px;
+}
+.prose-aura a {
+  color: var(--coral);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.prose-aura strong {
+  font-weight: 600;
+  color: var(--ink);
+}
