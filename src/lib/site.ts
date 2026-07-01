@@ -11,7 +11,7 @@ export const SITE_NAME = "AuraAI";
 export const APP_NAME = "Aura";
 
 // The canonical production origin. Updated to the live deploy URL.
-export const SITE_URL = "https://auraai-web.vercel.app";
+export const SITE_URL = "https://auraai-web-virid.vercel.app";
 
 export const COPYRIGHT_HOLDER = "AuraAI";
 export const LAST_UPDATED = "June 30, 2026";
